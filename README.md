@@ -6,7 +6,7 @@ The Legend of the Drunken Lemu:
 One day a man misspoke and instead of a drunken lemur, he said a drunken lemu.
 An AI generated image sprung forth:
 
-[The Lemu](images/lemu.png)
+![The Lemu](images/lemu.png)
 
 Half beast, half lemur, half emu.
 
