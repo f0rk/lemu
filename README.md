@@ -32,7 +32,7 @@ have you ever considered not drinking ten glasses of bourbon with lunch?
 You may also invoke lemu with the thing being drunk:
 ```!sh
 $ lemu -s "salmiakki koskenkorva"
-lemu -s koskenkorva
+you finished an entire fifth of salmiakki koskenkorva
 ```
 
 You may also specify the kind of alcohol:
