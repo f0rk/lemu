@@ -1,0 +1,109 @@
+#!/usr/bin/env python
+
+import argparse
+
+import random
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-s", "--selection", help="the thing you drank")
+parser.add_argument(
+    "-k",
+    "--kind",
+    choices=["beer", "wine", "liquor"],
+    help="the kind of thing in selection. if no selection, the kind of thing to select",
+)
+
+args = parser.parse_args()
+
+
+all_options = [
+    ("liquor", "liquor"),
+    ("liquor", "whiskey"),
+    ("liquor", "rum"),
+    ("liquor", "bourbon"),
+    ("liquor", "vodka"),
+    ("liquor", "gin"),
+    ("liquor", "white lightning"),
+    ("liquor", "moonshine"),
+    ("liquor", "everclear"),
+    ("liquor", "grain alcohol"),
+    ("liquor", "prison hooch"),
+    ("liquor", "tequila"),
+    ("liquor", "schnapps"),
+    ("liquor", "Goldschlager"),
+    ("liquor", "rotgut"),
+    ("liquor", "absinthe"),
+    ("liquor", "hundred proof"),
+    ("beer", "beer"),
+    ("beer", "lager"),
+    ("beer", "porter"),
+    ("beer", "stout"),
+    ("beer", "IPA"),
+    ("beer", "double IPA"),
+    ("beer", "triple IPA"),
+    ("beer", "belgian dubbel"),
+    ("beer", "belgian trippel"),
+    ("wine", "wine"),
+    ("wine", "cabernet"),
+    ("wine", "merlot"),
+    ("wine", "champagne"),
+    ("wine", "white"),
+    ("wine", "red"),
+    ("wine", "prosecco"),
+    ("wine", "sauvignon blanc"),
+    ("wine", "Boone's Farm"),
+    ("wine", "MD 20-20"),
+    ("wine", "mad dog"),
+]
+
+all_display_options = {
+    "liquor": [
+        "you finished an entire fifth of {}",
+        "you drank a whole barrel of {}",
+        "you know exactly how many gallons is a hogshead of {}",
+        "your liver regrets your encounter with {}",
+        "alcoholics anonymous can help you with your {} problem",
+        "an entire keg of {}? at this hour??",
+        "have you ever considered not drinking ten glasses of {} with lunch?",
+        "you vs. {}: you 0",
+        "a handle of {} really causes a terrible hangover, doesn't it?",
+        "did you ever consider that many liters of {} is bad for your health?",
+        "that whole bathtub of {} was neither for drinking nor bathing",
+    ],
+    "beer": [
+        "you drank a whole barrel of {}",
+        "you know exactly how many gallons is a hogshead of {}",
+        "an entire keg of {}? at this hour??",
+        "keg stands with {} didn't end so well",
+        "99 bottles is just song, you weren't supposed to drink that much {}",
+    ],
+    "wine": [
+        "you consumed an entire case of {}",
+        "you drank a whole barrel of {}",
+        "you know exactly how many gallons is a hogshead of {}",
+    ],
+}
+
+available_options = all_options
+if args.kind and not args.selection:
+    available_options = [o for o in all_options if o[0] == args.kind]
+
+if not args.selection:
+    kind, selection = random.choice(available_options)
+else:
+    selection = args.selection
+    kind = args.kind
+    if not kind:
+        kind = "liquor"
+
+display_options = all_display_options[kind]
+
+while True:
+    display = random.choice(display_options)
+
+    message = display.format(selection)
+
+    print(message)
+
+    break
